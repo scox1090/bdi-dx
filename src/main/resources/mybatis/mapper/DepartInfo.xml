@@ -1,0 +1,30 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdi.sp.DepartMapper">
+  <select id="selectDepartInfoList" resultType="com.bdi.sp.vo.DepartInfo">
+  	select * from depart_info
+  </select>
+  
+  <select id="selectDepartInfo" resultType="com.bdi.sp.vo.DepartInfo">
+  	select * from depart_info where dino = #{dino}
+  </select>
+  
+  <insert id="insertDepartInfo" parameterType="com.bdi.sp.vo.DepartInfo">
+  	insert into depart_info(diname, didesc, dicnt) value(#{diname},#{didesc},0)
+  </insert>
+  
+  <update id="updateDepartInfo" parameterType="com.bdi.sp.vo.DepartInfo">
+  	update depart_info
+  	<set>
+  		<if test="diname!=null">diname=#{diname},</if>
+  		<if test="didesc!=null">didesc=#{didesc},</if>
+  	</set>
+  	dicnt=0
+  	where dino = #{dino}
+  </update>
+  
+  <delete id="deleteJapan" parameterType="com.bdi.sp.vo.DepartInfo">
+  	delete from depart_info dino = #{dino}
+  </delete>
+</mapper>
