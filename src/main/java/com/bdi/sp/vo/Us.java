@@ -72,6 +72,5 @@ public class Us {
 				+ ", usrecommender=" + usrecommender + "]";
 	}
 	
-	/*insert into user(usid,uspwd,usname,usemail,usaddress,ustel,usgender,ushobby,usrecommender)
-	values('asd','asd','asd','asd','asd','asd','asd','asd','asd');*/​
+	
 }
