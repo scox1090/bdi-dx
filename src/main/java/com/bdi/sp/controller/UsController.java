@@ -25,7 +25,7 @@ public class UsController {
 	private UsService us;
 	
 	@RequestMapping (value="/users", method=RequestMethod.GET)
-		public @ResponseBody List<Us> getJapanList(@ModelAttribute Us u){
+		public @ResponseBody List<Us> getUsList(@ModelAttribute Us u){
 			return us.getUsList(null);
 		}
 	
@@ -35,20 +35,20 @@ public class UsController {
 	}
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.POST)
-	public @ResponseBody int insertJapan(@ModelAttribute Us u, @PathVariable Integer usno){
+	public @ResponseBody int insertUs(@ModelAttribute Us u, @PathVariable Integer usno){
 		logger.debug("insertuser=>{}",u);
 		return us.insertUs(u);
 	}
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.PUT)
-	public @ResponseBody int updateJapan(@RequestBody Us u, @PathVariable Integer usno){
+	public @ResponseBody int updateUs(@RequestBody Us u, @PathVariable Integer usno){
 		u.setUsno(usno);
 		logger.debug("updateuser=>{}",u);
 		return us.updateUs(u);
 	}
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.DELETE)
-	public @ResponseBody int deleteJapan(@RequestBody Us u, @PathVariable Integer usno){
+	public @ResponseBody int deleteUs(@RequestBody Us u, @PathVariable Integer usno){
 		u.setUsno(usno);
 		logger.debug("deleteuser=>{}",u);
 		return us.deleteUs(u);
