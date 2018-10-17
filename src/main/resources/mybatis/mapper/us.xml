@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bdi.sp.UsMapper">
   <select id="selectUsList" resultType="com.bdi.sp.vo.Us">
-  	select usno , u.* from user u
+  	select usno as id , u.* from user u
   	 <where>
   	 	<if test="usno!=null"> and usno=#{usno}</if>
     	<if test="usid!=null"> and usid=#{usid}</if>
