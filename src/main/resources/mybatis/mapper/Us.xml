@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdi.sp.UsMapper">
+  <select id="selectUsList" resultType="com.bdi.sp.vo.Us">
+  	select usno id , j.* from user u
+  </select>
+  
+  <select id="selectUs" resultType="com.bdi.sp.vo.Us">
+  	select * from user where usno = #{usno}
+  </select>
+  
+  <insert id="insertUs" parameterType="com.bdi.sp.vo.Us">
+  	insert into user(usid, uspwd,usname,usemail,usaddress,ustel,usgender,ushobby,usrecommender)
+  	 value(#{usid},#{uspwd},#{uspwd},#{usname},#{usemail},#{usaddress},#{ustel},#{usgender},#{ushobby},#{usrecommender})
+  </insert>
+  
+  <update id="updateUs" parameterType="com.bdi.sp.vo.Us">
+  	update user
+  	<set>
+  		<if test="usid!=null">usid=#{usid},</if>
+  		<if test="uspwd!=null">uspwd=#{uspwd},</if>
+  		<if test="usname!=null">usname=#{usname},</if>
+  		<if test="usemail!=null">usemail=#{usemail},</if>
+  		<if test="usaddress!=null">usaddress=#{usaddress},</if>
+  		<if test="ustel!=null">ustel=#{ustel},</if>
+  		<if test="usgender!=null">usgender=#{usgender},</if>
+  		<if test="ushobby!=null">ushobby=#{ushobby},</if>
+  		<if test="usrecommender!=null">usrecommender=#{usrecommender},</if>
+  		
+  	</set>
+  	where usno = #{usno}
+  </update>
+  
+  <delete id="deleteUs" parameterType="com.bdi.sp.vo.Us">
+  	delete from user where usno = #{usno}
+  </delete>
+</mapper>
