@@ -4,7 +4,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bdi.sp.UsMapper">
   <select id="selectUsList" resultType="com.bdi.sp.vo.Us">
-  	select usno id , j.* from user u
+  	select usno id , u.* from user u
+  	 <where>
+  	 	<if test="usno!=null"> and usno=#{usno}</if>
+    	<if test="usid!=null"> and usid=#{usid}</if>
+    	<if test="uspwd!=null"> and uspwd=#{uspwd}</if>
+    	<if test="usname!=null"> and usname=#{usname}</if>
+    	<if test="usemail!=null"> and usemail=#{usemail}</if>
+    	<if test="usaddress!=null"> and usaddress=#{usaddress}</if>
+    	<if test="ustel!=null"> and ustel=#{ustel}</if>
+    	<if test="usgender!=null"> and usgender=#{usgender}</if>
+    	<if test="ushobby!=null"> and ushobby=#{ushobby}</if>
+    	<if test="usrecommender!=null"> and usrecommender=#{usrecommender}</if>
+    </where>
   </select>
   
   <select id="selectUs" resultType="com.bdi.sp.vo.Us">
