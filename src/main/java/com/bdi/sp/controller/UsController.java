@@ -42,14 +42,14 @@ public class UsController {
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.PUT)
 	public @ResponseBody int updateJapan(@RequestBody Us u, @PathVariable Integer usno){
-		u.setusno(usno);
+		u.setUsno(usno);
 		logger.debug("updatejapan=>{}",u);
 		return us.updateUs(u);
 	}
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.DELETE)
 	public @ResponseBody int deleteJapan(@RequestBody Us u, @PathVariable Integer usno){
-		u.setusno(usno);
+		u.setUsno(usno);
 		logger.debug("deletejapan=>{}",u);
 		return us.deleteUs(u);
 	}

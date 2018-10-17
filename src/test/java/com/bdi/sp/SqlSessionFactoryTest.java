@@ -39,6 +39,6 @@ public class SqlSessionFactoryTest {
 		Japan j = new Japan();
 		j.setJpnum(1);
 		List<Japan> jList = ss.selectList("com.bdi.sp.JapanMapper.selectJapanList",j);
-		assertEquals(jList.size(), 5);
+		assertEquals(jList.size(),2);
 	}
 }
