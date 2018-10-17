@@ -26,6 +26,7 @@ public class UsController {
 	
 	@RequestMapping (value="/users", method=RequestMethod.GET)
 		public @ResponseBody List<Us> getUsList(@ModelAttribute Us u){
+		
 			return us.getUsList(null);
 		}
 	

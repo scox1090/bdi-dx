@@ -3,6 +3,7 @@ package com.bdi.sp.vo;
 public class Us {
 
 	private Integer usno;
+	private String usid;
 	private String uspwd;
 	private String usname;
 	private String usemail;
@@ -11,6 +12,12 @@ public class Us {
 	private String usgender;
 	private String ushobby;
 	private String usrecommender;
+	public String getUsid() {
+		return usid;
+	}
+	public void setUsid(String usid) {
+		this.usid = usid;
+	}
 	public Integer getUsno() {
 		return usno;
 	}
@@ -67,9 +74,9 @@ public class Us {
 	}
 	@Override
 	public String toString() {
-		return "Us [usno=" + usno + ", uspwd=" + uspwd + ", usname=" + usname + ", usemail=" + usemail + ", usaddress="
-				+ usaddress + ", ustel=" + ustel + ", usgender=" + usgender + ", ushobby=" + ushobby
-				+ ", usrecommender=" + usrecommender + "]";
+		return "Us [usno=" + usno + ", usid=" + usid + ", uspwd=" + uspwd + ", usname=" + usname + ", usemail="
+				+ usemail + ", usaddress=" + usaddress + ", ustel=" + ustel + ", usgender=" + usgender + ", ushobby="
+				+ ushobby + ", usrecommender=" + usrecommender + "]";
 	}
 	
 	
