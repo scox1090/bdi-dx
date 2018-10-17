@@ -2,6 +2,8 @@ package com.bdi.sp.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +38,10 @@ public class UsController {
 	}
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.POST)
-	public @ResponseBody int insertUs(@ModelAttribute Us u, @PathVariable Integer usno){
+	public @ResponseBody int insertUs(@ModelAttribute Us u, @PathVariable Integer usno,
+	HttpServletResponse response) throws Exception{
 		logger.debug("insertuser=>{}",u);
-		return us.insertUs(u);
+		return us.insertUs(u, response);
 	}
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.PUT)

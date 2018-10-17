@@ -1,6 +1,10 @@
 package com.bdi.sp.service.impl;
 
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,10 +32,18 @@ public class UsServiceImpl implements UsService {
 	}
 
 	@Override
-	public int insertUs(Us u) {
-		// TODO Auto-generated method stub
-		return udao.insertUs(u);
+	public int insertUs(Us u,HttpServletResponse response)throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		if (udao.check_id(u.getUsid()) == 1) {
+			out.println("alert('동일한 아이디가 있습니다.');");
+			out.close();
+			return 0;
 	}
+		return udao.insertUs(u);
+} 
+		
+	
 
 	@Override
 	public int updateUs(Us u) {
@@ -44,5 +56,17 @@ public class UsServiceImpl implements UsService {
 		// TODO Auto-generated method stub
 		return udao.deleteUs(u);
 	}
+
+	@Override
+	public int check_id(String usid, HttpServletResponse response) throws Exception {
+		PrintWriter out = response.getWriter();
+		out.println(udao.check_id(usid));
+		out.close();
+		return 1;
+	}
+
+	
+
+
 
 }

@@ -45,4 +45,10 @@ public class UsDAOImpl implements UsDAO {
 		return ss.delete("com.bdi.sp.UsMapper.deleteUs",u);
 	}
 
+	@Override
+	public int check_id(String usid) {
+		// TODO Auto-generated method stub
+		return ss.selectOne("com.bdi.sp.UsMapper.check_id",usid);
+	}
+
 }
