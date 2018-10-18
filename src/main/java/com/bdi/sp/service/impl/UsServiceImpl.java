@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,6 +64,12 @@ public class UsServiceImpl implements UsService {
 		out.println(udao.check_id(usid));
 		out.close();
 		return 1;
+	}
+
+	@Override
+	public int login(Us u) {
+		
+		return udao.login(u);
 	}
 
 	

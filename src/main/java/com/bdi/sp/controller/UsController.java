@@ -1,13 +1,14 @@
 package com.bdi.sp.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,11 +21,26 @@ import com.bdi.sp.vo.Us;
 
 
 
-@Controller
 public class UsController {
 	private static final Logger logger = LoggerFactory.getLogger(UsController.class);
 	@Autowired
 	private UsService us;
+	
+	@RequestMapping(value="/users/login",method=RequestMethod.POST)
+	public @ResponseBody Map<String,String> login(@RequestBody Us u){
+		Map<String,String> rMap = new HashMap<String,String>();
+		rMap.put("login", "fail");
+		rMap.put("msg","아이디 및 비밀번호를 확인하세요");
+		if(us.login(u)==0) {
+			return rMap;
+		}
+		
+		if(us.login(u)==1) {
+				rMap.put("login", "success");
+				rMap.put("msg", "로그인 되었습니다.");
+			}
+		return rMap;
+	}
 	
 	@RequestMapping (value="/users", method=RequestMethod.GET)
 		public @ResponseBody List<Us> getUsList(@ModelAttribute Us u){
@@ -38,7 +54,7 @@ public class UsController {
 	}
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.POST)
-	public @ResponseBody int insertUs(@ModelAttribute Us u, @PathVariable Integer usno,
+	public @ResponseBody int insertUs(@RequestBody Us u, @PathVariable Integer usno,
 	HttpServletResponse response) throws Exception{
 		logger.debug("insertuser=>{}",u);
 		return us.insertUs(u, response);

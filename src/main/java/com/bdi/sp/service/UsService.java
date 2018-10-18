@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bdi.sp.vo.Us;
 
@@ -17,4 +18,5 @@ public interface UsService {
 	public int updateUs(Us  u);
 	public int deleteUs(Us  u);
 	public int check_id(String usid, HttpServletResponse response)throws Exception;
+	public int login(Us u);
 }
