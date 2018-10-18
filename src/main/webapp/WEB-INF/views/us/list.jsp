@@ -8,7 +8,7 @@
 	<title>스프링테스트</title>
 	<link rel="stylesheet" type="text/css" href="${resPath}/dhtmlx/skins/skyblue/dhtmlx.css"/>
 <script>
-var usGrid;
+var usGrid; 
 function doInit(){
 	usGrid = new dhtmlXGridObject('divGrid');
 	usGrid.setImagePath('${resPath}/dhtmlx/skins/skyblue/imgs/dhxgrid_skyblue/');

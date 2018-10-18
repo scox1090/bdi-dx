@@ -35,8 +35,8 @@ public class UsController {
 		return us.getUs(usno);
 	}
 	
-	@RequestMapping (value="/users/{usno}", method=RequestMethod.POST)
-	public @ResponseBody int insertUs(@ModelAttribute Us u, @PathVariable Integer usno){
+	@RequestMapping (value="/users", method=RequestMethod.POST)
+	public @ResponseBody int insertUs(@RequestBody Us u, @PathVariable Integer usno){
 		logger.debug("insertuser=>{}",u);
 		return us.insertUs(u);
 	}

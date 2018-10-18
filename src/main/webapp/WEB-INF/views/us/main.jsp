@@ -20,7 +20,7 @@
 	]
 	
 	var joinFormData = [
-		{type:'settings', postion:'label-left', inputWidth:'300', labelWidth:'200'},
+		{type:'settings', postion:'label-left', inputWidth:'300', labelWidth:'100'},
 		{type:'fieldset', name:'join', label:'회원가입', inputWidth:'auto',
 			list:[
 				{type:'input', name:'id', label:'아이디',validate:'ValidAplhaNumeric',required:true},
@@ -29,7 +29,8 @@
 				{type:'input', name:'email', label:'이메일',required:true},
 				{type:'input', name:'address', label:'주소',required:true},
 				{type:'input', name:'tel', label:'전화번호',required:true},
-				{type:'input', name:'gender', label:'성별',required:true},
+				{type:'radio', name:'gender', label:'남', checked:true},
+				{type:'radio', name:'gender', label:'여',},
 				{type:'input', name:'hobby', label:'취미'},
 				{type:'input', name:'commder', label:'추천인'},
 				{type:'button', name:'joinbtn', value:'회원가입'}
@@ -56,7 +57,7 @@
 							var id = loginForm.getItemValue('id');
 							var pwd = loginForm.getItemValue('pwd');
 							var conf = {
-									url:'/users',
+									url:'/users/{usno}',
 									method:'POST',
 									param : JSON.stringify({id:id,pwd:pwd}),
 									success : function(res){
@@ -89,7 +90,7 @@
 							var hobby = joinForm.getItemValue('hobby');
 							var commder = joinForm.getItemValue('commder');
 							var conf = {
-									url:'/users/{usno}',
+									url:'/users',
 									method:'POST',
 									param : JSON.stringify({id:id,pwd:pwd,name:name,email:email,address:address,tel:tel,gender:gender,hobby:hobby,commder:commder}),
 									success : function(res){
