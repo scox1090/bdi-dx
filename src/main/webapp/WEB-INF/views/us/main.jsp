@@ -29,10 +29,9 @@
 				{type:'input', name:'email', label:'이메일',required:true},
 				{type:'input', name:'address', label:'주소',required:true},
 				{type:'input', name:'tel', label:'전화번호',required:true},
-				{type:'radio', name:'gender', label:'남', checked:true},
-				{type:'radio', name:'gender', label:'여',},
+				{type:'input', name:'gender', label:'성별',required:true},
 				{type:'input', name:'hobby', label:'취미'},
-				{type:'input', name:'commder', label:'추천인'},
+				{type:'input', name:'recommender', label:'추천인'},
 				{type:'button', name:'joinbtn', value:'회원가입'}
 			]	
 		}
@@ -57,9 +56,9 @@
 							var id = loginForm.getItemValue('id');
 							var pwd = loginForm.getItemValue('pwd');
 							var conf = {
-									url:'/users/{usno}',
+									url:'/users/login',
 									method:'POST',
-									param : JSON.stringify({id:id,pwd:pwd}),
+									param : JSON.stringify({usid:id,uspwd:pwd}),
 									success : function(res){
 										res = JSON.parse(res);
 										alert(res.msg);
@@ -88,16 +87,17 @@
 							var tel = joinForm.getItemValue('tel');
 							var gender = joinForm.getItemValue('gender');
 							var hobby = joinForm.getItemValue('hobby');
-							var commder = joinForm.getItemValue('commder');
+							var recommender = joinForm.getItemValue('recommender');
 							var conf = {
 									url:'/users',
 									method:'POST',
-									param : JSON.stringify({id:id,pwd:pwd,name:name,email:email,address:address,tel:tel,gender:gender,hobby:hobby,commder:commder}),
+									param : JSON.stringify({usid:id,uspwd:pwd,usname:name,usemail:email,usaddress:address,ustel:tel,usgender:gender,ushobby:hobby,usrecommender:recommender}),
 									success : function(res){
 										res = JSON.parse(res);
 										alert(res.msg);
 									}
 							}
+							alert(conf.param);
 							au.send(conf);
 							}
 						}
