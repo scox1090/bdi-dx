@@ -11,4 +11,6 @@ public interface UsDAO {
 	public int insertUs(Us  u);
 	public int updateUs(Us  u);
 	public int deleteUs(Us  u);
+	public int check_id(String usid); 
+	public int login(Us  u); 
 }

@@ -10,7 +10,7 @@ import com.bdi.sp.dao.UsDAO;
 import com.bdi.sp.vo.Us;
 
 @Repository
-public class UsDAOImpl implements UsDAO {
+public abstract class UsDAOImpl implements UsDAO {
 
 	@Autowired
 	private SqlSession ss;
@@ -43,6 +43,20 @@ public class UsDAOImpl implements UsDAO {
 	public int deleteUs(Us u) {
 		// TODO Auto-generated method stub
 		return ss.delete("com.bdi.sp.UsMapper.deleteUs",u);
+	}
+
+	@Override
+	public int check_id(String usid) {
+		// TODO Auto-generated method stub
+		return ss.selectOne("com.bdi.sp.UsMapper.check_id",usid);
+	}
+	@Override
+	public int login(Us u) {
+		int cnt = 0;
+		if(ss.selectOne("com.bdi.sp.UsMapper.selectUsList",u)!=null) {
+			cnt++;
+		}
+		return cnt;
 	}
 
 }
