@@ -4,11 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +19,7 @@ import com.bdi.sp.service.UsService;
 import com.bdi.sp.vo.Us;
 
 
-
+@Controller
 public class UsController {
 	private static final Logger logger = LoggerFactory.getLogger(UsController.class);
 	@Autowired
@@ -41,6 +40,21 @@ public class UsController {
 			}
 		return rMap;
 	}
+	@RequestMapping(value="/users/idck",method=RequestMethod.POST)
+	public @ResponseBody Map<String,String> idck(@RequestBody Us u){
+		Map<String,String> rMap = new HashMap<String,String>();
+		rMap.put("idck", "fail");
+		rMap.put("msg","이미 있는 아이디입니다.");
+		if(us.login(u)==0) {
+			return rMap;
+		}
+		
+		if(us.login(u)==1) {
+				rMap.put("idck", "success");
+				rMap.put("msg", "아이디를 만들 수 있습니다.");
+			}
+		return rMap;
+	}
 	
 	@RequestMapping (value="/users", method=RequestMethod.GET)
 		public @ResponseBody List<Us> getUsList(@ModelAttribute Us u){
@@ -54,10 +68,9 @@ public class UsController {
 	}
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.POST)
-	public @ResponseBody int insertUs(@RequestBody Us u, @PathVariable Integer usno,
-	HttpServletResponse response) throws Exception{
+	public @ResponseBody int insertUs(@RequestBody Us u, @PathVariable Integer usno){
 		logger.debug("insertuser=>{}",u);
-		return us.insertUs(u, response);
+		return us.insertUs(u);
 	}
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.PUT)

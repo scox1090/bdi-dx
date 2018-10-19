@@ -8,8 +8,8 @@
 		select usid from user where usid = #{usid} and uspwd = #{uspwd}
 	</select>
 	
-	<select id="check_id"  resultType="com.bdi.sp.vo.Us">
-		select count(*) from user where usid = #{usid}
+	<select id="idck"  resultType="com.bdi.sp.vo.Us">
+		select  usid from user where usid = #{usid}
 	</select>
 	
    <select id="selectUsList" resultType="com.bdi.sp.vo.Us">

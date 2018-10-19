@@ -1,13 +1,11 @@
 package com.bdi.sp.service.impl;
 
-import java.io.PrintWriter;
+
 import java.util.List;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.bdi.sp.dao.UsDAO;
@@ -18,6 +16,7 @@ import com.bdi.sp.vo.Us;
 public class UsServiceImpl implements UsService {
 
 	@Autowired
+	
 	private UsDAO udao;
 	
 	@Override
@@ -33,14 +32,8 @@ public class UsServiceImpl implements UsService {
 	}
 
 	@Override
-	public int insertUs(Us u,HttpServletResponse response)throws Exception {
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		if (udao.check_id(u.getUsid()) == 1) {
-			out.println("alert('동일한 아이디가 있습니다.');");
-			out.close();
-			return 0;
-	}
+	public int insertUs(Us u) {
+		
 		return udao.insertUs(u);
 } 
 		
@@ -58,18 +51,18 @@ public class UsServiceImpl implements UsService {
 		return udao.deleteUs(u);
 	}
 
-	@Override
-	public int check_id(String usid, HttpServletResponse response) throws Exception {
-		PrintWriter out = response.getWriter();
-		out.println(udao.check_id(usid));
-		out.close();
-		return 1;
-	}
+	
 
 	@Override
 	public int login(Us u) {
 		
 		return udao.login(u);
+	}
+
+	@Override
+	public int idck(Us u) {
+		// TODO Auto-generated method stub
+		return udao.idck(u);
 	}
 
 	
