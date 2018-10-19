@@ -21,8 +21,6 @@ function doInit(){
 		res= JSON.parse(res);
 		usGrid.parse(res,'js'); 
 	}});
-	
-	
 }
 window.addEventListener('load', doInit);
 </script>
