@@ -1,8 +1,9 @@
 package com.bdi.sp.service.impl;
 
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,23 +33,58 @@ public class UsServiceImpl implements UsService {
 	}
 
 	@Override
-	public int insertUs(Us u) {
-
-		return udao.insertUs(u);
+	public Map<String, String> insertUs(Us u) {
+		
+		Map<String,String> rMap = new HashMap<String,String>();
+		rMap.put("insert", "fail");
+		rMap.put("msg","회원가입 실패.");
+		int cnt = udao.insertUs(u);
+		if(cnt==0) {
+			return rMap;
+		}
+		
+		if(cnt==1) {
+				rMap.put("insert", "success");
+				rMap.put("msg", "회원가입 성공.");
+			}
+		return rMap;	
+		
 } 
 		
 	
 
 	@Override
-	public int updateUs(Us u) {
-		// TODO Auto-generated method stub
-		return udao.updateUs(u);
+	public Map<String,String> updateUs(Us u) {
+		Map<String,String> rMap = new HashMap<String,String>();
+		rMap.put("update", "fail");
+		rMap.put("msg","삭제실패.");
+		int cnt = udao.insertUs(u);
+		if(cnt==0) {
+			return rMap;
+		}
+		
+		if(cnt==1) {
+				rMap.put("update", "success");
+				rMap.put("msg", "삭제성공.");
+			}
+		return rMap;
 	}
 
 	@Override
-	public int deleteUs(Us u) {
-		// TODO Auto-generated method stub
-		return udao.deleteUs(u);
+	public Map<String,String> deleteUs(Us u) {
+		Map<String,String> rMap = new HashMap<String,String>();
+		rMap.put("delete", "fail");
+		rMap.put("msg","삭제 실패.");
+		int cnt = udao.insertUs(u);
+		if(cnt==0) {
+			return rMap;
+		}
+		
+		if(cnt==1) {
+				rMap.put("delete", "success");
+				rMap.put("msg", "삭제 성공.");
+			}
+		return rMap;
 	}
 
 

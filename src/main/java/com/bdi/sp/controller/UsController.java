@@ -70,21 +70,21 @@ public class UsController {
 	
 
 	@RequestMapping (value="/users", method=RequestMethod.POST)
-	public @ResponseBody int insertUs(@RequestBody Us u){
+	public @ResponseBody Map<String, String> insertUs(@RequestBody Us u){
 
 		logger.debug("insertuser=>{}",u);
 		return us.insertUs(u);
 	}
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.PUT)
-	public @ResponseBody int updateUs(@RequestBody Us u, @PathVariable Integer usno){
+	public @ResponseBody Map<String, String> updateUs(@RequestBody Us u, @PathVariable Integer usno){
 		u.setUsno(usno);
 		logger.debug("updateuser=>{}",u);
 		return us.updateUs(u);
 	}
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.DELETE)
-	public @ResponseBody int deleteUs(@RequestBody Us u, @PathVariable Integer usno){
+	public @ResponseBody Map<String, String> deleteUs(@RequestBody Us u, @PathVariable Integer usno){
 		u.setUsno(usno);
 		logger.debug("deleteuser=>{}",u);
 		return us.deleteUs(u);

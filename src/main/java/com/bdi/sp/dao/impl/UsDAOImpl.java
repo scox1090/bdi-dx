@@ -29,7 +29,6 @@ public class UsDAOImpl implements UsDAO {
 
 	@Override
 	public int insertUs(Us u) {
-		// TODO Auto-generated method stub
 		return ss.insert("com.bdi.sp.UsMapper.insertUs",u);
 	}
 
