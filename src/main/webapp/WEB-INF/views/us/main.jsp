@@ -7,7 +7,7 @@
 <title>스프링테스트</title>
 </head>
 <script>
-	var dxForm, dxWin, loginFrom;
+	var dxForm, dxWin, loginForm, joinForm;
 	var loginFormData = [
 		{type:'settings', postion:'label-left', inputWidth:'300', labelWidth:'200'},
 		{type:'fieldset', name:'login', label:'로그인', inputWidth:'auto',
@@ -17,25 +17,40 @@
 				{type:'button', name:'loginbtn', value:'로그인'}
 			]	
 		}
-	]
+	]/* 
+	var idckFormData = [
+		{type:'settings', postion:'label-left', inputWidth:'300', labelWidth:'100'},
+		{type:'fieldset', name:'go', label:'로그인', inputWidth:'auto',
+			list:[
+				{type:'input', name:'usid', label:'아이디',validate:'ValidAplhaNumeric',required:true},
+				{type:'button', name:'idckbtn', value:'중복확인'}
+			]
+		}
+	] */
 	
 	var joinFormData = [
 		{type:'settings', postion:'label-left', inputWidth:'300', labelWidth:'100'},
-		{type:'fieldset', name:'join', label:'회원가입', inputWidth:'auto',
+		{type:'fieldset', name:'login', label:'로그인', inputWidth:'auto',
 			list:[
-				{type:'input', name:'id', label:'아이디',validate:'ValidAplhaNumeric',required:true},
-				{type:'password', name:'pwd', label:'비밀번호',validate:'ValidAplhaNumeric',required:true},
-				{type:'input', name:'name', label:'이름',required:true},
-				{type:'input', name:'email', label:'이메일',required:true},
-				{type:'input', name:'address', label:'주소',required:true},
-				{type:'input', name:'tel', label:'전화번호',required:true},
-				{type:'input', name:'gender', label:'성별',required:true},
-				{type:'input', name:'hobby', label:'취미'},
-				{type:'input', name:'recommender', label:'추천인'},
-				{type:'button', name:'joinbtn', value:'회원가입'}
+				{type:'input', name:'usid', label:'아이디',validate:'ValidAplhaNumeric',required:true},
+				{type:'password', name:'uspwd', label:'비밀번호',validate:'ValidAplhaNumeric',required:true},
+				{type:'input', name:'usname', label:'이름',required:true},
+				{type:'input', name:'usemail', label:'이메일',required:true},
+				{type:'input', name:'usaddress', label:'주소',required:true},
+				{type:'input', name:'ustel', label:'전화번호',required:true},
+						{type:'fieldset', name:'gender', label:'성별', inputWidth:'auto',
+							list:[
+								{type:'radio', name:'usgender', value:'남',checked:true},
+								{type:'radio', name:'usgender', value:'여'}
+							]
+						},
+				{type:'input', name:'ushobby', label:'취미'},
+				{type:'input', name:'usrecommender', label:'추천인'},
+				{type:'button', name:'joinbtn', value:'로그인'}
 			]	
 		}
 	]
+	
 	function doInit(){
 		var forms = [
 			{type:'button',value:'로그인',name:'login'},
@@ -52,6 +67,7 @@
 					dxWin.window('w1').attachObject('loginForm');
 					loginForm.attachEvent('onButtonClick',function(name){
 						if(name=='loginbtn'){
+							alert(loginForm.validate())
 							if(loginForm.validate()){
 							var id = loginForm.getItemValue('id');
 							var pwd = loginForm.getItemValue('pwd');
@@ -69,38 +85,52 @@
 						}
 					})
 				}
-			}if(name=='join'){
+			}else if(name=='join'){
 				if(!dxWin){
 					dxWin = new dhtmlXWindows();
-					dxWin.createWindow('w1',0,10,370,610);
+					dxWin.createWindow('w1',0,10,370,660);
 					dxWin.window('w1').centerOnScreen();
 					var joinForm = new dhtmlXForm('joinForm',joinFormData);
 					dxWin.window('w1').attachObject('joinForm');
 					joinForm.attachEvent('onButtonClick',function(name){
 						if(name=='joinbtn'){
 							if(joinForm.validate()){
-							var id = joinForm.getItemValue('id');
-							var pwd = joinForm.getItemValue('pwd');
-							var name = joinForm.getItemValue('name');
-							var email = joinForm.getItemValue('email');
-							var address = joinForm.getItemValue('address');
-							var tel = joinForm.getItemValue('tel');
-							var gender = joinForm.getItemValue('gender');
-							var hobby = joinForm.getItemValue('hobby');
-							var recommender = joinForm.getItemValue('recommender');
+							var usid = joinForm.getItemValue('usid');
+							var uspwd = joinForm.getItemValue('uspwd');
+							var usname = joinForm.getItemValue('usname');
+							var usemail = joinForm.getItemValue('usemail');
+							var usaddress = joinForm.getItemValue('usaddress');
+							var ustel = joinForm.getItemValue('ustel');
+							var usgender = joinForm.getCheckedValue('usgender');
+							var ushobby = joinForm.getItemValue('ushobby');
+							var usrecommender = joinForm.getItemValue('usrecommender');
 							var conf = {
 									url:'/users',
 									method:'POST',
-									param : JSON.stringify({usid:id,uspwd:pwd,usname:name,usemail:email,usaddress:address,ustel:tel,usgender:gender,ushobby:hobby,usrecommender:recommender}),
+									param : JSON.stringify({usid:usid,uspwd:uspwd,usname:usname,usemail:usemail,usaddress:usaddress,ustel:ustel,usgender:usgender,ushobby:ushobby,usrecommender:usrecommender}),
 									success : function(res){
 										res = JSON.parse(res);
 										alert(res.msg);
 									}
 							}
-							alert(conf.param);
 							au.send(conf);
 							}
-						}
+						}/* else if(name=='idckbtn'){
+							alert(joinForm.validate())
+							if(joinForm.validate()){
+							var usid = joinForm.getItemValue('usid');
+							var conf = {
+									url:'/users/idck',
+									method:'POST',
+									param : JSON.stringify({usid:usid}),
+									success : function(res){
+										res = JSON.parse(res);
+										alert(res.msg);
+									}
+							}
+							au.send(conf);
+							}
+						} */
 					})
 				}
 			}

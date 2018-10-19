@@ -43,15 +43,15 @@ public class UsController {
 	@RequestMapping(value="/users/idck",method=RequestMethod.POST)
 	public @ResponseBody Map<String,String> idck(@RequestBody Us u){
 		Map<String,String> rMap = new HashMap<String,String>();
-		rMap.put("idck", "fail");
-		rMap.put("msg","이미 있는 아이디입니다.");
-		if(us.login(u)==0) {
+		rMap.put("idck", "success");
+		rMap.put("msg","아이디를 만들 수 있습니다.");
+		if(us.idck(u)==0) {
 			return rMap;
 		}
 		
-		if(us.login(u)==1) {
-				rMap.put("idck", "success");
-				rMap.put("msg", "아이디를 만들 수 있습니다.");
+		if(us.idck(u)==1) {
+				rMap.put("idck", "fail");
+				rMap.put("msg", ".이미 있는 아이디입니다.");
 			}
 		return rMap;
 	}
@@ -70,7 +70,7 @@ public class UsController {
 	
 
 	@RequestMapping (value="/users", method=RequestMethod.POST)
-	public @ResponseBody int insertUs(@RequestBody Us u, @PathVariable Integer usno){
+	public @ResponseBody int insertUs(@RequestBody Us u){
 
 		logger.debug("insertuser=>{}",u);
 		return us.insertUs(u);
