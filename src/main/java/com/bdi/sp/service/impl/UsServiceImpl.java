@@ -33,7 +33,7 @@ public class UsServiceImpl implements UsService {
 
 	@Override
 	public int insertUs(Us u) {
-		
+
 		return udao.insertUs(u);
 } 
 		
@@ -51,13 +51,14 @@ public class UsServiceImpl implements UsService {
 		return udao.deleteUs(u);
 	}
 
-	
+
 
 	@Override
 	public int login(Us u) {
 		
 		return udao.login(u);
 	}
+
 
 	@Override
 	public int idck(Us u) {
@@ -66,7 +67,4 @@ public class UsServiceImpl implements UsService {
 	}
 
 	
-
-
-
 }

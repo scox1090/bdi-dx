@@ -11,7 +11,7 @@ import com.bdi.sp.vo.Us;
 
 @Repository
 public class UsDAOImpl implements UsDAO {
- 
+
 	@Autowired
 	private SqlSession ss;
 	
@@ -45,7 +45,7 @@ public class UsDAOImpl implements UsDAO {
 		return ss.delete("com.bdi.sp.UsMapper.deleteUs",u);
 	}
 
-	
+
 	@Override
 	public int login(Us u) {
 		int cnt = 0;

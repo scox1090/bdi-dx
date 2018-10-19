@@ -67,8 +67,11 @@ public class UsController {
 		return us.getUs(usno);
 	}
 	
-	@RequestMapping (value="/users/{usno}", method=RequestMethod.POST)
+	
+
+	@RequestMapping (value="/users", method=RequestMethod.POST)
 	public @ResponseBody int insertUs(@RequestBody Us u, @PathVariable Integer usno){
+
 		logger.debug("insertuser=>{}",u);
 		return us.insertUs(u);
 	}
