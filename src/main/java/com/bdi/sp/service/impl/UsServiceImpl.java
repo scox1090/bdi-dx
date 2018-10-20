@@ -111,14 +111,17 @@ public class UsServiceImpl implements UsService {
 		Map<String,String> rMap = new HashMap<String,String>();
 		rMap.put("idck", "success");
 		rMap.put("msg","아이디를 만들 수 있습니다.");
-		if(udao.idck(u)==0) {
+		String id = udao.idck(u);
+		String id2 = u.getUsid();
+		if(id==null) {
+			rMap.put("value", id2);
 			return rMap;
 		}
 		
-		if(udao.idck(u)==1) {
+		if(id!=u.getUsid()) {
 				rMap.put("idck", "fail");
-				rMap.put("msg", ".이미 있는 아이디입니다.");
-			}
+				rMap.put("msg", "이미 있는 아이디입니다.");
+		}
 		return rMap;
 	}
 

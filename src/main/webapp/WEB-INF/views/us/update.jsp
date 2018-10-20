@@ -48,7 +48,7 @@ function doInit(){
 				updateForm.attachEvent('onButtonClick',function(name){
 					if(name=='updatebtn'){
 						if(updateForm.validate()){
-						var usid = updateForm.getItemValue('usno');
+						var usno = updateForm.getItemValue('usno');
 						var usid = updateForm.getItemValue('usid');
 						var uspwd = updateForm.getItemValue('uspwd');
 						var usname = updateForm.getItemValue('usname');
@@ -59,12 +59,12 @@ function doInit(){
 						var ushobby = updateForm.getItemValue('ushobby');
 						var usrecommender = updateForm.getItemValue('usrecommender');
 						var conf = {
-								url:'/users/{usno}',
+								url:'/users/' + usno,
 								method:'PUT',
 								param : JSON.stringify({usid:usid,uspwd:uspwd,usname:usname,usemail:usemail,usaddress:usaddress,ustel:ustel,usgender:usgender,ushobby:ushobby,usrecommender:usrecommender}),
-								success : function(res){
+								success : function(res){ 
 									res = JSON.parse(res);
-									alert(res.msg);
+									alert(res);
 								}
 						}
 						au.send(conf);

@@ -52,10 +52,8 @@ public class UsDAOImpl implements UsDAO {
 	}
 
 	@Override
-	public int idck(Us u) {
-		
-		int id= ss.selectOne("com.bdi.sp.UsMapper.idck",u);
-		return id;
+	public String idck(Us u) {
+		return  ss.selectOne("com.bdi.sp.UsMapper.idck",u);
 	}
 
 }

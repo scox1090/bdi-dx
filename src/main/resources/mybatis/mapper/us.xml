@@ -9,8 +9,8 @@
 	</select>
 
 	
-	<select id="idck"  resultType="java.lang.Integer">
-		select count(*) usid from user where usid = #{usid}
+	<select id="idck"  resultType="String">
+		select usid from user where usid = #{usid}
 	</select>
 	
    <select id="selectUsList" resultType="com.bdi.sp.vo.Us">
