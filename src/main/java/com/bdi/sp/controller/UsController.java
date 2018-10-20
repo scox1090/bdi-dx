@@ -42,7 +42,7 @@ public class UsController {
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.GET)
 	public @ResponseBody Us getUsOne(@PathVariable Integer usno){
-		return us.getUs(usno);
+		return us.getUs(usno);  
 	}
 	
 	
