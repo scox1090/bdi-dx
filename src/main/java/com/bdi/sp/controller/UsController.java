@@ -63,7 +63,7 @@ public class UsController {
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.DELETE)
 	public @ResponseBody Map<String, String> deleteUs(@RequestBody Us u, @PathVariable Integer usno){
-		u.setUsno(usno);
+		u.setUsno(usno); 
 		logger.debug("deleteuser=>{}",u);
 		return us.deleteUs(u);
 	}
