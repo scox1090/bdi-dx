@@ -55,8 +55,8 @@ public class UsController {
 	}
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.PUT)
-	public @ResponseBody Map<String, String> updateUs(@RequestBody Us u, @PathVariable Integer usno){
-		u.setUsno(usno);
+	public @ResponseBody Map<String, String> updateUs(@RequestBody Us u){
+		
 		logger.debug("updateuser=>{}",u); 
 		return us.updateUs(u);
 	}

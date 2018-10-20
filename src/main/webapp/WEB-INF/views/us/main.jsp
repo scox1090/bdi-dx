@@ -55,7 +55,7 @@
 	function doInit(){
 		var forms = [
 			{type:'button',value:'로그인',name:'login'},
-			{type:'button',value:'중복확인',name:'idck'}
+			{type:'button',value:'회원가입',name:'join'}
 		]
 		var dxForm = new dhtmlXForm("dxForm",forms);
 		dxForm.attachEvent('onButtonClick',function(name){
@@ -78,6 +78,7 @@
 									success : function(res){
 										res = JSON.parse(res);
 										alert(res.msg);
+										location.href='/uri/us/list';
 									}
 							}
 							au.send(conf);
@@ -87,6 +88,45 @@
 				}
 			}
 			
+			 if(name=='join'){
+					if(!dxWin){
+						dxWin = new dhtmlXWindows();
+						dxWin.createWindow('w1',0,10,370,660);
+						dxWin.window('w1').centerOnScreen();
+						var joinForm = new dhtmlXForm('joinForm',joinFormData);
+						dxWin.window('w1').attachObject('joinForm');
+						joinForm.attachEvent('onButtonClick',function(name){
+							if(name=='joinbtn'){
+								if(joinForm.validate()){
+									if(status==500){
+										alert("아이디 중복입니다.");
+									}
+									var usid = joinForm.getItemValue('usid');
+									var uspwd = joinForm.getItemValue('uspwd');
+									var usname = joinForm.getItemValue('usname');
+									var usemail = joinForm.getItemValue('usemail');
+									var usaddress = joinForm.getItemValue('usaddress');
+									var ustel = joinForm.getItemValue('ustel');
+									var usgender = joinForm.getCheckedValue('usgender');
+									var ushobby = joinForm.getItemValue('ushobby');
+									var usrecommender = joinForm.getItemValue('usrecommender');
+									var conf = {
+										url:'/users/idck',
+										method:'POST',
+										param : JSON.stringify({usid:usid,uspwd:uspwd,usname:usname,usemail:usemail,usaddress:usaddress,ustel:ustel,usgender:usgender,ushobby:ushobby,usrecommender:usrecommender}),
+										success : function(res){
+											res = JSON.parse(res);
+											alert(res.msg);
+										}
+									};
+								au.send(conf);
+								}
+								
+							}
+						});
+					}
+				}
+			 
 			if(name=='idck'){
 				dxWin = new dhtmlXWindows();
 				dxWin.createWindow('w1',0,10,370,660);
@@ -117,48 +157,13 @@
 					}
 				});
 			}
-			
-			 if(name=='join'){
-				if(!dxWin){
-					dxWin = new dhtmlXWindows();
-					dxWin.createWindow('w1',0,10,370,660);
-					dxWin.window('w1').centerOnScreen();
-					var joinForm = new dhtmlXForm('joinForm',joinFormData);
-					dxWin.window('w1').attachObject('joinForm');
-					joinForm.attachEvent('onButtonClick',function(name){
-						if(name=='joinbtn'){
-							alert('sss');
-							if(joinForm.validate()){
-								alert('aa');
-								var usid= id;
-								var uspwd = joinForm.getItemValue('uspwd');
-								var usname = joinForm.getItemValue('usname');
-								var usemail = joinForm.getItemValue('usemail');
-								var usaddress = joinForm.getItemValue('usaddress');
-								var ustel = joinForm.getItemValue('ustel');
-								var usgender = joinForm.getCheckedValue('usgender');
-								var ushobby = joinForm.getItemValue('ushobby');
-								var usrecommender = joinForm.getItemValue('usrecommender');
-								var conf = {
-									url:'/users',
-									method:'POST',
-									param : JSON.stringify({usid:usid,uspwd:uspwd,usname:usname,usemail:usemail,usaddress:usaddress,ustel:ustel,usgender:usgender,ushobby:ushobby,usrecommender:usrecommender}),
-									success : function(res){
-										res = JSON.parse(res);
-										alert(res.msg);
-									}
-								};
-								alert('b');
-							au.send(conf);
-							}
-						}
-					});
-				}
-			}
 		});
 	}
 	window.addEventListener('load',doInit);
-	
+
+	function goMain(){
+		
+	}
 </script>
 <body>
 	<div id="dxForm" style="height: 100px"></div>		

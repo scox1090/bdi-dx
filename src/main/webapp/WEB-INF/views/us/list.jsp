@@ -15,12 +15,33 @@ function doInit(){
 	usGrid.setHeader('번호,아이디,비밀번호,이름,이메일,주소,전화번호,성별,취미,추천인');
 	usGrid.setColumnIds('usno,usid,uspwd,usname,usemail,usaddress,ustel,usgender,ushobby,usrecommender');
 	usGrid.setColTypes('ro,ed,ed,ed,ed,ed,ed,ed,ed,ed');
+	
+	usGrid.attachEvent("onEditCell", function(stage,rId,cInd,nValue,oValue){
+		var keyArr = ['usno','usid','uspwd','usname','usemail','usaddress','ustel','usgender','ushobby','usrecommender'];
+		var ks = keyArr[cInd];
+		if(stage==2){
+			var conf = {
+				url:'/users/',
+				method:'PUT',
+				/* param : JSON.stringify({usno:keyArr[0],keyArr[cInd]:nValue}), */    
+				success : function(res){ 
+					res = JSON.parse(res);
+					alert(res);
+				}
+		}
+		au.send(conf);
+		}
+		return true;
+	});
 	usGrid.init();
 	au.send({url:'/users',success:function(res){
 		res= JSON.parse(res);
 		usGrid.parse(res,'js'); 
 	}});
 }
+
+
+ 
 window.addEventListener('load', doInit);
 </script>
 </head>

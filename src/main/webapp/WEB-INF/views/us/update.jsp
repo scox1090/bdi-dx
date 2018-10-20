@@ -11,7 +11,7 @@ var dxForm, dxWin, updateForm;
 
 var updateFormData = [
 	{type:'settings', postion:'label-left', inputWidth:'300', labelWidth:'100'},
-	{type:'fieldset', name:'login', label:'수정', inputWidth:'auto',
+	{type:'fieldset', name:'update', label:'수정', inputWidth:'auto',
 		list:[
 			{type:'input', name:'usid', label:'아이디',validate:'ValidAplhaNumeric',required:true},
 			{type:'password', name:'uspwd', label:'비밀번호',validate:'ValidAplhaNumeric',required:true},
@@ -61,7 +61,7 @@ function doInit(){
 						var conf = {
 								url:'/users/' + usno,
 								method:'PUT',
-								param : JSON.stringify({usid:usid,uspwd:uspwd,usname:usname,usemail:usemail,usaddress:usaddress,ustel:ustel,usgender:usgender,ushobby:ushobby,usrecommender:usrecommender}),
+								param : JSON.stringify({usno:usno,usid:usid,uspwd:uspwd,usname:usname,usemail:usemail,usaddress:usaddress,ustel:ustel,usgender:usgender,ushobby:ushobby,usrecommender:usrecommender}),
 								success : function(res){ 
 									res = JSON.parse(res);
 									alert(res);
