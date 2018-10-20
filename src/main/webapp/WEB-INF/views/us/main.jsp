@@ -17,20 +17,11 @@
 				{type:'button', name:'loginbtn', value:'로그인'}
 			]	
 		}
-	]/* 
-	var idckFormData = [
-		{type:'settings', postion:'label-left', inputWidth:'300', labelWidth:'100'},
-		{type:'fieldset', name:'go', label:'로그인', inputWidth:'auto',
-			list:[
-				{type:'input', name:'usid', label:'아이디',validate:'ValidAplhaNumeric',required:true},
-				{type:'button', name:'idckbtn', value:'중복확인'}
-			]
-		}
-	] */
+	]
 	
 	var joinFormData = [
 		{type:'settings', postion:'label-left', inputWidth:'300', labelWidth:'100'},
-		{type:'fieldset', name:'login', label:'로그인', inputWidth:'auto',
+		{type:'fieldset', name:'login', label:'회원가입', inputWidth:'auto',
 			list:[
 				{type:'input', name:'usid', label:'아이디',validate:'ValidAplhaNumeric',required:true},
 				{type:'password', name:'uspwd', label:'비밀번호',validate:'ValidAplhaNumeric',required:true},
@@ -40,8 +31,8 @@
 				{type:'input', name:'ustel', label:'전화번호',required:true},
 						{type:'fieldset', name:'gender', label:'성별', inputWidth:'auto',
 							list:[
-								{type:'radio', name:'usgender', value:'남',checked:true},
-								{type:'radio', name:'usgender', value:'여'}
+								{type:'radio', name:'usgender', value:'남',label:'남',checked:true},
+								{type:'radio', name:'usgender', value:'여',label:'여'}
 							]
 						},
 				{type:'input', name:'ushobby', label:'취미'},
@@ -115,23 +106,8 @@
 							}
 							au.send(conf);
 							}
-						}/* else if(name=='idckbtn'){
-							alert(joinForm.validate())
-							if(joinForm.validate()){
-							var usid = joinForm.getItemValue('usid');
-							var conf = {
-									url:'/users/idck',
-									method:'POST',
-									param : JSON.stringify({usid:usid}),
-									success : function(res){
-										res = JSON.parse(res);
-										alert(res.msg);
-									}
-							}
-							au.send(conf);
-							}
-						} */
-					})
+						}
+					});
 				}
 			}
 		})
