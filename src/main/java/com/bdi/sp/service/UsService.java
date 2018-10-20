@@ -14,6 +14,6 @@ public interface UsService {
 	public Map<String,String> insertUs(Us  u);
 	public Map<String,String> updateUs(Us  u);
 	public Map<String,String> deleteUs(Us  u);
-	public int login(Us u);
-	public int idck(Us u);
+	public Map<String,String> login(Us u);
+	public Map<String,String> idck(Us u);
 }

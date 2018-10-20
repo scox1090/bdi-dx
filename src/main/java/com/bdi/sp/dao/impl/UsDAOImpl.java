@@ -47,20 +47,15 @@ public class UsDAOImpl implements UsDAO {
 
 	@Override
 	public int login(Us u) {
-		int cnt = 0;
-		if(ss.selectOne("com.bdi.sp.UsMapper.login",u)!=null) {
-			cnt++;
-		}
-		return cnt;
+		int loginck = ss.selectOne("com.bdi.sp.UsMapper.login",u);	
+		return loginck;
 	}
 
 	@Override
 	public int idck(Us u) {
-		int cnt = 0;
-		if(ss.selectOne("com.bdi.sp.UsMapper.idck",u)!=null) {
-			cnt++;
-		}
-		return cnt;
+		
+		int id= ss.selectOne("com.bdi.sp.UsMapper.idck",u);
+		return id;
 	}
 
 }

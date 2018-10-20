@@ -90,16 +90,36 @@ public class UsServiceImpl implements UsService {
 
 
 	@Override
-	public int login(Us u) {
+	public Map<String,String> login(Us u) {
+		Map<String,String> rMap = new HashMap<String,String>();
+		rMap.put("login", "fail");
+		rMap.put("msg","아이디 및 비밀번호를 확인하세요");
+		if(udao.login(u)==0) {
+			return rMap;
+		}
 		
-		return udao.login(u);
+		if(udao.login(u)==1) {
+				rMap.put("login", "success");
+				rMap.put("msg", "로그인 되었습니다.");
+			}
+		return rMap;
 	}
 
 
 	@Override
-	public int idck(Us u) {
-		// TODO Auto-generated method stub
-		return udao.idck(u);
+	public Map<String,String> idck(Us u) {
+		Map<String,String> rMap = new HashMap<String,String>();
+		rMap.put("idck", "success");
+		rMap.put("msg","아이디를 만들 수 있습니다.");
+		if(udao.idck(u)==0) {
+			return rMap;
+		}
+		
+		if(udao.idck(u)==1) {
+				rMap.put("idck", "fail");
+				rMap.put("msg", ".이미 있는 아이디입니다.");
+			}
+		return rMap;
 	}
 
 	

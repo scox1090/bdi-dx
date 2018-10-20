@@ -27,40 +27,18 @@ public class UsController {
 	
 	@RequestMapping(value="/users/login",method=RequestMethod.POST)
 	public @ResponseBody Map<String,String> login(@RequestBody Us u){
-		Map<String,String> rMap = new HashMap<String,String>();
-		rMap.put("login", "fail");
-		rMap.put("msg","아이디 및 비밀번호를 확인하세요");
-		if(us.login(u)==0) {
-			return rMap;
-		}
-		
-		if(us.login(u)==1) {
-				rMap.put("login", "success");
-				rMap.put("msg", "로그인 되었습니다.");
-			}
-		return rMap;
+		return us.login(u);
 	}
 	@RequestMapping(value="/users/idck",method=RequestMethod.POST)
 	public @ResponseBody Map<String,String> idck(@RequestBody Us u){
-		Map<String,String> rMap = new HashMap<String,String>();
-		rMap.put("idck", "success");
-		rMap.put("msg","아이디를 만들 수 있습니다.");
-		if(us.idck(u)==0) {
-			return rMap;
-		}
-		
-		if(us.idck(u)==1) {
-				rMap.put("idck", "fail");
-				rMap.put("msg", ".이미 있는 아이디입니다.");
-			}
-		return rMap;
+		return us.idck(u);
 	}
 	
 	@RequestMapping (value="/users", method=RequestMethod.GET)
 		public @ResponseBody List<Us> getUsList(@ModelAttribute Us u){
 		
-			return us.getUsList(null);
-		}
+		return us.getUsList(null);
+	}
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.GET)
 	public @ResponseBody Us getUsOne(@PathVariable Integer usno){

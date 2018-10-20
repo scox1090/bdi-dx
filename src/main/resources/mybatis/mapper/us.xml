@@ -4,13 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bdi.sp.UsMapper">
 
-	<select id="login"  resultType="com.bdi.sp.vo.Us">
-		select usid from user where usid = #{usid} and uspwd = #{uspwd}
+	<select id="login"  resultType="java.lang.Integer">
+		select count(*) usid from user where usid = #{usid} and uspwd = #{uspwd}
 	</select>
 
 	
-	<select id="idck"  resultType="com.bdi.sp.vo.Us">
-		select  usid from user where usid = #{usid}
+	<select id="idck"  resultType="java.lang.Integer">
+		select count(*) usid from user where usid = #{usid}
 	</select>
 	
    <select id="selectUsList" resultType="com.bdi.sp.vo.Us">
