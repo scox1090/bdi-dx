@@ -22,7 +22,6 @@ function doInit(){
 		var data ={usno: usGrid.cells(rId,0).getValue()};
 		data[ks] = nValue;
 		if(stage==0){
-			alert(ks)
 		if(ks=='remove'){
 				var usno = usGrid.cells(rId,0).getValue();
 				var conf = {
