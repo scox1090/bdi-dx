@@ -55,7 +55,7 @@ public class UsController {
 	}
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.PUT)
-	public @ResponseBody Map<String, String> updateUs(@RequestBody Us u){
+	public @ResponseBody Map<String, String> updateUs(@RequestBody Us u,@PathVariable Integer usno){
 		
 		logger.debug("updateuser=>{}",u); 
 		return us.updateUs(u);
@@ -63,7 +63,7 @@ public class UsController {
 	
 	@RequestMapping (value="/users/{usno}", method=RequestMethod.DELETE)
 	public @ResponseBody Map<String, String> deleteUs(@RequestBody Us u, @PathVariable Integer usno){
-		u.setUsno(usno); 
+		
 		logger.debug("deleteuser=>{}",u);
 		return us.deleteUs(u);
 	}

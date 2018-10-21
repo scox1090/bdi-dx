@@ -57,15 +57,15 @@ public class UsServiceImpl implements UsService {
 	public Map<String,String> updateUs(Us u) {
 		Map<String,String> rMap = new HashMap<String,String>();
 		rMap.put("update", "fail");
-		rMap.put("msg","삭제실패.");
-		int cnt = udao.insertUs(u);
+		rMap.put("msg","수정 실패.");
+		int cnt = udao.updateUs(u);
 		if(cnt==0) {
 			return rMap;
 		}
 		
 		if(cnt==1) {
 				rMap.put("update", "success");
-				rMap.put("msg", "삭제성공.");
+				rMap.put("msg", "수정 성공.");
 			}
 		return rMap;
 	}
@@ -75,7 +75,7 @@ public class UsServiceImpl implements UsService {
 		Map<String,String> rMap = new HashMap<String,String>();
 		rMap.put("delete", "fail");
 		rMap.put("msg","삭제 실패.");
-		int cnt = udao.insertUs(u);
+		int cnt = udao.deleteUs(u);
 		if(cnt==0) {
 			return rMap;
 		}
@@ -93,7 +93,7 @@ public class UsServiceImpl implements UsService {
 	public Map<String,String> login(Us u) {
 		Map<String,String> rMap = new HashMap<String,String>();
 		rMap.put("login", "fail");
-		rMap.put("msg","아이디 및 비밀번호를 확인하세요");
+		rMap.put("msg","아이디 및 비밀번호를 확인하세요.");
 		if(udao.login(u)==0) {
 			return rMap;
 		}
@@ -105,7 +105,7 @@ public class UsServiceImpl implements UsService {
 		return rMap;
 	}
 
-
+	
 	@Override
 	public Map<String,String> idck(Us u) {
 		Map<String,String> rMap = new HashMap<String,String>();
