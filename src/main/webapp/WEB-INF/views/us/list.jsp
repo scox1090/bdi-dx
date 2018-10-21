@@ -19,26 +19,24 @@ function doInit(){
 	usGrid.attachEvent("onEditCell", function(stage,rId,cInd,nValue,oValue){
 		var keyArr = ['usno','usid','uspwd','usname','usemail','usaddress','ustel','usgender','ushobby','usrecommender','remove']; 
 		var ks = keyArr[cInd]; //'ustel'
-			
 		var data ={usno: usGrid.cells(rId,0).getValue()};
 		data[ks] = nValue;
-		//data = {usno:1231233,ustel:123123 }
-		/* 	if(stage==2){
-		if(keyArr=='remove'){
+		if(stage==0){
+			alert(ks)
+		if(ks=='remove'){
 				var usno = usGrid.cells(rId,0).getValue();
 				var conf = {
 						url:'/users/'+ usno,
 						method:'DELETE', 
-						param : "",
+						param : JSON.stringify(data),
 						success : function(res){ 
 							res = JSON.parse(res);
-							alert(res);
 						}
 				}
 				au.send(conf);
 				location.href='/uri/us/list';
 			}
-		} */
+		}
 		if(stage==2){
 
 			var usno = usGrid.cells(rId,0).getValue();
@@ -48,7 +46,6 @@ function doInit(){
 				param : JSON.stringify(data),   
 				success : function(res){ 
 					res = JSON.parse(res);
-					alert(res);
 				}
 		}
 		au.send(conf);
@@ -61,7 +58,10 @@ function doInit(){
 		usGrid.parse(res,'js'); 
 	}});
 }
-
+function logout(){
+	alert('메인페이지로 이동합니다.')
+	location.href='/uri/us/main';
+}
 
  
 window.addEventListener('load', doInit);
@@ -69,5 +69,6 @@ window.addEventListener('load', doInit);
 </head>
 <body>
 <div id="divGrid" style="width:1000px; height:350px; background-color:white;"></div>
-</body>
+<button onclick="logout()">로그아웃</button>
+</body> 
 </html>

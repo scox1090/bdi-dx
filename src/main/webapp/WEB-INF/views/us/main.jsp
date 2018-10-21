@@ -78,7 +78,8 @@
 									success : function(res){
 										res = JSON.parse(res);
 										alert(res.msg);
-										location.href='/uri/us/list';
+										if(res.msg == '로그인 되었습니다.')
+											location.href='/uri/us/list';
 									}
 							}
 							au.send(conf);
