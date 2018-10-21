@@ -18,8 +18,13 @@ function doInit(){
 	
 	usGrid.attachEvent("onEditCell", function(stage,rId,cInd,nValue,oValue){
 		var keyArr = ['usno','usid','uspwd','usname','usemail','usaddress','ustel','usgender','ushobby','usrecommender','remove']; 
-		if(stage==0){
-		if(ks=='remove'){
+		var ks = keyArr[cInd]; //'ustel'
+			
+		var data ={usno: usGrid.cells(rId,0).getValue()};
+		data[ks] = nValue;
+		//data = {usno:1231233,ustel:123123 }
+		/* 	if(stage==2){
+		if(keyArr=='remove'){
 				var usno = usGrid.cells(rId,0).getValue();
 				var conf = {
 						url:'/users/'+ usno,
@@ -33,14 +38,14 @@ function doInit(){
 				au.send(conf);
 				location.href='/uri/us/list';
 			}
-		}
+		} */
 		if(stage==2){
 
 			var usno = usGrid.cells(rId,0).getValue();
 			var conf = {
 				url:'/users/'+ usno,
 				method:'PUT',
-				param : JSON.stringify({ks:nValue}),   
+				param : JSON.stringify(data),   
 				success : function(res){ 
 					res = JSON.parse(res);
 					alert(res);
