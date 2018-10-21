@@ -12,18 +12,35 @@ var usGrid;
 function doInit(){
 	usGrid = new dhtmlXGridObject('divGrid');
 	usGrid.setImagePath('${resPath}/dhtmlx/skins/skyblue/imgs/dhxgrid_skyblue/');
-	usGrid.setHeader('번호,아이디,비밀번호,이름,이메일,주소,전화번호,성별,취미,추천인');
-	usGrid.setColumnIds('usno,usid,uspwd,usname,usemail,usaddress,ustel,usgender,ushobby,usrecommender');
-	usGrid.setColTypes('ro,ed,ed,ed,ed,ed,ed,ed,ed,ed');
+	usGrid.setHeader('번호,아이디,비밀번호,이름,이메일,주소,전화번호,성별,취미,추천인,삭제하기');
+	usGrid.setColumnIds('usno,usid,uspwd,usname,usemail,usaddress,ustel,usgender,ushobby,usrecommender,usno');
+	usGrid.setColTypes('ro,ed,ed,ed,ed,ed,ed,ed,ed,ed,ed');
 	
 	usGrid.attachEvent("onEditCell", function(stage,rId,cInd,nValue,oValue){
-		var keyArr = ['usno','usid','uspwd','usname','usemail','usaddress','ustel','usgender','ushobby','usrecommender'];
-		var ks = keyArr[cInd];
+		var keyArr = ['usno','usid','uspwd','usname','usemail','usaddress','ustel','usgender','ushobby','usrecommender','remove']; 
+		if(stage==0){
+		if(ks=='remove'){
+				var usno = usGrid.cells(rId,0).getValue();
+				var conf = {
+						url:'/users/'+ usno,
+						method:'DELETE', 
+						param : "",
+						success : function(res){ 
+							res = JSON.parse(res);
+							alert(res);
+						}
+				}
+				au.send(conf);
+				location.href='/uri/us/list';
+			}
+		}
 		if(stage==2){
+
+			var usno = usGrid.cells(rId,0).getValue();
 			var conf = {
-				url:'/users/',
+				url:'/users/'+ usno,
 				method:'PUT',
-				/* param : JSON.stringify({usno:keyArr[0],keyArr[cInd]:nValue}), */    
+				param : JSON.stringify({ks:nValue}),   
 				success : function(res){ 
 					res = JSON.parse(res);
 					alert(res);

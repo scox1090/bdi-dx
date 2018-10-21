@@ -111,7 +111,7 @@
 									var ushobby = joinForm.getItemValue('ushobby');
 									var usrecommender = joinForm.getItemValue('usrecommender');
 									var conf = {
-										url:'/users/idck',
+										url:'/users',
 										method:'POST',
 										param : JSON.stringify({usid:usid,uspwd:uspwd,usname:usname,usemail:usemail,usaddress:usaddress,ustel:ustel,usgender:usgender,ushobby:ushobby,usrecommender:usrecommender}),
 										success : function(res){
